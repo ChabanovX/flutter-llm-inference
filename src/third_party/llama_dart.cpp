@@ -104,6 +104,7 @@ int32_t llama_dart_generate(
   if (actual_prompt < 0) return -3;
 
   llama_batch batch = llama_batch_init(actual_prompt, 0, 1);
+  batch.n_tokens = actual_prompt;
   for (int i = 0; i < actual_prompt; ++i) {
     batch.token[i] = prompt_tokens[i];
     batch.pos[i] = i;
@@ -122,7 +123,7 @@ int32_t llama_dart_generate(
   int32_t cur_pos = actual_prompt;
 
   for (int32_t step = 0; step < max_tokens; ++step) {
-    const float* logits = llama_get_logits_ith(handle->ctx, 0);
+    const float* logits = llama_get_logits(handle->ctx);
     if (!logits) break;
 
     const int32_t vocab_n = llama_vocab_n_tokens(handle->vocab);
@@ -157,6 +158,7 @@ int32_t llama_dart_generate(
     }
 
     llama_batch step_batch = llama_batch_init(1, 0, 1);
+    step_batch.n_tokens = 1;
     step_batch.token[0] = new_token_id;
     step_batch.pos[0] = cur_pos++;
     step_batch.n_seq_id[0] = 1;
