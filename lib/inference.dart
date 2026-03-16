@@ -5,14 +5,14 @@ import 'dart:io';
 import 'package:ffi/ffi.dart';
 import 'package:llama_inference/llama_bindings.g.dart';
 
-Future<String> inference(String prompt) async {
-  final modelPath = "/Users/chabanovz/prog/flutter/experiments/llama_inference/models/qwen2.5-0.5b-instruct-q5_k_m.gguf".toNativeUtf8();
-  final llamaHandlePtr = llama_dart_create(modelPath.cast<Char>(), 2048, 4);
+Future<String> inference({required String prompt, required String modelPath}) async {
+  final modelPathUtf = modelPath.toNativeUtf8();
+  final llamaHandlePtr = llama_dart_create(modelPathUtf.cast<Char>(), 2048, 4);
   if (llamaHandlePtr == nullptr) {
-    print('LLAMA FAILED TO REGISTER. EXITING');
-    exit(1);
+    print('LLAMA FAILED TO REGISTER');
+    return 'Failed to register model';
   }
-  malloc.free(modelPath);
+  malloc.free(modelPathUtf);
 
   // Generate.
   final prompt = "Hello! How are you?".toNativeUtf8().cast<Char>();
