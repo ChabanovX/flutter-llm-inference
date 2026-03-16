@@ -15,20 +15,20 @@ Future<String> inference({required String prompt, required String modelPath}) as
   malloc.free(modelPathUtf);
 
   // Generate.
-  final prompt = "Hello! How are you?".toNativeUtf8().cast<Char>();
+  final promptUTF = prompt.toNativeUtf8().cast<Char>();
   final outputBuf = malloc<Uint8>(16 * 1024);
 
   final written = llama_dart_generate(
     llamaHandlePtr,
-    prompt,
-    128 * 2,
+    promptUTF,
+    128 * 10,
     outputBuf.cast<Char>(),
     16 * 1024,
   );
 
   // print('WRITTEN RESULT: $written');
 
-  malloc.free(prompt);
+  malloc.free(promptUTF);
 
   if (written < 0) {
     malloc.free(outputBuf);

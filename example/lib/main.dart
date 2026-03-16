@@ -29,7 +29,7 @@ class Page extends StatefulWidget {
 class _PageState extends State<Page> {
   Future<String>? promptResult;
 
-  Future<String>? modelPathFuture;
+  Future<String?>? modelPathFuture;
   String? modelPath;
 
   late final TextEditingController _textEditingController;
@@ -62,6 +62,8 @@ class _PageState extends State<Page> {
     final targetPath = p.join(modelsDir.path, p.basename(pickedPath));
     await File(pickedPath).copy(targetPath);
 
+    print(targetPath);
+
     return targetPath;
   }
 
@@ -69,24 +71,37 @@ class _PageState extends State<Page> {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar.large(
-        largeTitle: FutureBuilder(future: modelPathFuture, builder: (context, snap) {
-          if (snap.hasData) {
-            modelPath = snap.data;
-            return Text('Selected path: ${snap.data}');
-          } return Row(
-            children: [
-              Text('Select a model path: '),
-              CupertinoButton(sizeStyle: .small, onPressed: prepareModelFile, child: Text('Select'))
-            ],
-          );
-        }),
+        largeTitle: FutureBuilder(
+          future: modelPathFuture,
+          builder: (context, snap) {
+            if (snap.hasData) {
+              modelPath = snap.data;
+              return Text('Selected path: ${snap.data}');
+            }
+            return Row(
+              children: [
+                Text('Select a model path: '),
+                CupertinoButton(
+                  sizeStyle: .small,
+                  onPressed: () {
+                    setState(() {
+                      modelPathFuture = prepareModelFile();
+                    });
+                  },
+                  child: Text('Select'),
+                ),
+              ],
+            );
+          },
+        ),
       ),
-      child: Center(
-        child: Container(
+      child: SingleChildScrollView(
+        child: Padding(
           padding: .symmetric(horizontal: 64),
           child: Column(
             mainAxisAlignment: .center,
             children: [
+              SizedBox(height: 128 * 4,),
               CupertinoTextField(
                 placeholder: 'Input a prompt',
                 controller: _textEditingController,
@@ -96,7 +111,12 @@ class _PageState extends State<Page> {
                 child: CupertinoButton(
                   child: Text('Generate'),
                   onPressed: () {
-                    promptResult = inference(prompt: _textEditingController.text, modelPath: modelPath!);
+                    setState(() {
+                      promptResult = inference(
+                        prompt: _textEditingController.text,
+                        modelPath: modelPath!,
+                      );
+                    });
                   },
                 ),
               ),
