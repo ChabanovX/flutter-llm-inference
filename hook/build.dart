@@ -12,8 +12,8 @@ Future<void> main(List<String> args) async {
       '${input.outputDirectoryShared.toFilePath()}/llama_build',
     )..createSync(recursive: true);
 
-    final nativeDir = '$packageRoot/native';
-    final llamaCppDir = '$packageRoot/third_party/llama.cpp';
+    final nativeDir = '$packageRoot/src/third_party';
+    final llamaCppDir = '$packageRoot/src/third_party/llama.cpp';
 
     final cmakeConfigure = await Process.run('cmake', [
       '-S',

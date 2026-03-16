@@ -5,7 +5,7 @@ import 'package:llama_inference/llama_bindings.g.dart';
 
 void main() {
   // Create.
-  final modelPath = "path/to/model".toNativeUtf8();
+  final modelPath = "/Users/chabanovz/.ollama/models/blobs/sha256-afb707b6b8fac6e475acc42bc8380fc0b8d2e0e4190be5a969fbf62fcc897db5".toNativeUtf8();
   final llamaHandle = llama_dart_create(modelPath.cast<Char>(), 2048, 4);
   malloc.free(modelPath);
 
