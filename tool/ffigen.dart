@@ -6,7 +6,7 @@ void main() {
   final packageRoot = Platform.script.resolve('../');
   FfiGenerator(
     headers: Headers(
-      entryPoints: [packageRoot.resolve('src/third_party/llama_dart.h')],
+      entryPoints: [packageRoot.resolve('src/llama_dart.h')],
     ),
     functions: Functions.includeSet({'llama_dart_create', 'llama_dart_destroy', 'llama_dart_generate'}),
     output: Output(
