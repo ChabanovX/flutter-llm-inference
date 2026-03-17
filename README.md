@@ -1,10 +1,10 @@
 # llama_inference
 
-Dart FFI package that loads llama.cpp runtime and runs it via FFI calls.
+Dart FFI package that loads llama.cpp runtime and runs it via FFI calls. Uses build hooks for linking code assets.
 
 ## Getting Started
 
-Change variables inside lib/main.dart.
+Firstly, adjust variables inside `lib/main.dart`.
 
 Run:
 
