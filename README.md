@@ -2,6 +2,8 @@
 
 Dart and Flutter FFI wrapper around `llama.cpp` for running local `GGUF` models on desktop.
 
+![example](docs/gen_example.png)
+
 ## Status
 
 This package is experimental.
@@ -109,7 +111,3 @@ Run the sample from the package root with `dart run` or `flutter run` so build h
 ### Model loads but output quality is poor or repetitive
 
 That is expected with the current demo decoder. The package currently uses a minimal greedy generation loop without chat template handling or proper sampling.
-
-## Example
-
-![example](docs/gen_example.png)
