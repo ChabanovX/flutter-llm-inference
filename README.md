@@ -28,10 +28,10 @@ Notes:
 
 ## Quick Start: Dart Smoke Test
 
-Use the repo-local sample in [`lib/main.dart`](/Users/chabanovz/prog/flutter/experiments/llama_inference/lib/main.dart).
+Use the repo-local sample in [`lib/main.dart`](lib/main.dart).
 
 1. Put a `GGUF` model file somewhere on disk.
-2. Update the model path in [`lib/main.dart`](/Users/chabanovz/prog/flutter/experiments/llama_inference/lib/main.dart).
+2. Update the model path in [`lib/main.dart`](lib/main.dart).
 3. Run:
 
 ```sh
@@ -66,17 +66,17 @@ Notes:
 
 ## Package Entry Points
 
-- [`lib/inference.dart`](/Users/chabanovz/prog/flutter/experiments/llama_inference/lib/inference.dart): minimal Dart API used by the example app
-- [`lib/main.dart`](/Users/chabanovz/prog/flutter/experiments/llama_inference/lib/main.dart): repo-local smoke test
-- [`example/lib/main.dart`](/Users/chabanovz/prog/flutter/experiments/llama_inference/example/lib/main.dart): Flutter macOS example UI
+- [`lib/inference.dart`](lib/inference.dart): minimal Dart API used by the example app
+- [`lib/main.dart`](lib/main.dart): repo-local smoke test
+- [`example/lib/main.dart`](example/lib/main.dart): Flutter macOS example UI
 
 ## Project Layout
 
-- [`src/`](/Users/chabanovz/prog/flutter/experiments/llama_inference/src): native bridge and CMake files
-- [`src/third_party/llama.cpp/`](/Users/chabanovz/prog/flutter/experiments/llama_inference/src/third_party/llama.cpp): vendored `llama.cpp`
-- [`hook/build.dart`](/Users/chabanovz/prog/flutter/experiments/llama_inference/hook/build.dart): native asset build hook
-- [`lib/`](/Users/chabanovz/prog/flutter/experiments/llama_inference/lib): generated bindings and Dart wrappers
-- [`example/`](/Users/chabanovz/prog/flutter/experiments/llama_inference/example): Flutter example app
+- [`src/`](src): native bridge and CMake files
+- [`src/third_party/llama.cpp/`](src/third_party/llama.cpp): vendored `llama.cpp`
+- [`hook/build.dart`](hook/build.dart): native asset build hook
+- [`lib/`](lib): generated bindings and Dart wrappers
+- [`example/`](example): Flutter example app
 
 ## Limitations
 
@@ -88,7 +88,7 @@ Notes:
 - no built-in model download flow
 - no mobile packaging workflow yet
 
-The native implementation itself documents this in [`src/llama_dart.cpp`](/Users/chabanovz/prog/flutter/experiments/llama_inference/src/llama_dart.cpp).
+The native implementation itself documents this in [`src/llama_dart.cpp`](src/llama_dart.cpp).
 
 ## Troubleshooting
 
